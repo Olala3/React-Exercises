@@ -3,8 +3,6 @@ import './App.css';
 import {Welcome} from './Exercises'
 
 function App() {
-  const name = <strong>Ola</strong>;
-  const age = 25;
 
   return (
     <div className="App">
@@ -12,7 +10,7 @@ function App() {
 
         <img src={logo} className="App-logo" alt="logo" />
         
-        <Welcome name={name} age= {age}/>
+        <Welcome name='Ola' age= '29'/>
 
       </header>
     </div>
