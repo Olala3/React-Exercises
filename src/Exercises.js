@@ -3,7 +3,7 @@ import React from "react";
 
 function Age(props) {
     return <div>
-    {props.age > 18 && <p>Your age is {props.age}</p>}
+    {props.age > 18 && props.age < 65 && <p>Your age is {props.age}</p>}
     </div>;
 }
 
