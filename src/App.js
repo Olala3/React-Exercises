@@ -10,7 +10,7 @@ function App() {
 
         <img src={logo} className="App-logo" alt="logo" />
         
-        <Welcome name='Ola' age= '29'/>
+        <Welcome name='Ola' age= '17'/>
 
       </header>
     </div>
