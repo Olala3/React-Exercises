@@ -2,7 +2,9 @@ import React from "react";
 
 
 function Age(props) {
-    return <p>Your age is {props.age}</p>;
+    return <div>
+    {props.age > 18 && <p>Your age is {props.age}</p>}
+    </div>;
 }
 
 export class Welcome extends React.Component {
