@@ -22,6 +22,13 @@ export class Welcome extends React.Component {
     }
 }
 
+
+function DisplayCounter(props) {
+    return <div>
+        <h1>Counter: {props.count}</h1>
+    </div>
+}
+
 export class Counter extends React.Component {
     constructor(props){
         super(props)
@@ -38,8 +45,6 @@ export class Counter extends React.Component {
     }
 
     render(){
-        return <div>
-            <h1>Counter: {this.state.count}</h1>
-        </div>
+       return <DisplayCounter count={this.state.count}/>
     }
 }
