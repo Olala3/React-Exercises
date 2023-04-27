@@ -11,7 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         
         <Welcome name='Ola' age= '29'/>
-        <Counter/>
+        <Counter initialValue={29} incrementAmount={10} incrementInterval={1000}/>
 
       </header>
     </div>
