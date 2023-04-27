@@ -15,7 +15,9 @@ export class Welcome extends React.Component {
                ? <p>Welcome {this.props.name}!</p>
                : <p>Welcome Everyone!</p>
             }
-            {this.props.age && <Age age={this.props.age}/>}
+            {this.props.age
+            && this.props.name === 'John'
+            && <Age age={this.props.age}/>}
         </div>
     }
 }
