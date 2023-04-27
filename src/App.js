@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Welcome} from './Exercises'
+import {Counter, Welcome} from './Exercises'
 
 function App() {
 
@@ -10,7 +10,8 @@ function App() {
 
         <img src={logo} className="App-logo" alt="logo" />
         
-        <Welcome name='Ola' age= '17'/>
+        <Welcome name='Ola' age= '29'/>
+        <Counter/>
 
       </header>
     </div>
