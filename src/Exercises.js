@@ -54,3 +54,21 @@ export class Counter extends React.Component {
        return <DisplayCounter count={this.state.count}/>
     }
 }
+
+
+export class ClickCounter extends React.Component {
+    state = {count:0}
+  
+    handleClick = () => {
+        this.setState((state) => ({ count: state.count + 1 }));
+      };
+  
+    render() {
+      return (
+        <div>
+          <p>Counter: {this.state.count}</p>
+          <button onClick={this.handleClick}>Click me!</button>
+        </div>
+      );
+    }
+  }
