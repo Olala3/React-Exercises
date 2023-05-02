@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 
 function Age(props) {
@@ -72,3 +72,18 @@ export class ClickCounter extends React.Component {
       );
     }
   }
+
+export function ClickTracker() {
+  const [lastClicked, setLastClicked] = useState(0);
+
+   function trackClick(event) {
+    setLastClicked(event.target.innerText);
+  } 
+
+  return <div>
+    <h1>Last clicked: {lastClicked}</h1>
+    <button onClick={trackClick}>Button 1</button>
+    <button onClick={trackClick}>Button 2</button>
+    <button onClick={trackClick}>Button 3</button>
+  </div> 
+}
