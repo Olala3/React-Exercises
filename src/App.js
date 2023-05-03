@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {ClickCounter, ClickTracker, InteractiveWelcome} from './Exercises'
+import {ClickCounter, ClickTracker, InteractiveWelcome, Login} from './Exercises'
 
 function App() {
 
@@ -15,6 +15,7 @@ function App() {
         <ClickCounter/>
         <ClickTracker/>
         <InteractiveWelcome/>
+        <Login/>
 
       </header>
     </div>

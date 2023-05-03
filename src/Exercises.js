@@ -101,3 +101,37 @@ export class InteractiveWelcome extends React.Component {
     </div>
   }
 }
+
+export class Login extends React.Component {
+  state = {
+    username: '',
+    password: ''
+  }
+
+  handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleLoginClick = () => {
+    if (this.state.username && this.state.password) {
+      this.props.onLogin(this.setState)
+    }
+  }
+
+  render(){
+    const isDisabled = !this.state.username || !this.state.password;
+
+    return <div>
+    <label>Username:</label>
+    <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange}></input>
+    <label>Password:</label>
+    <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}></input>
+    <button disabled={isDisabled}>Login</button>
+    </div>
+  }
+}
