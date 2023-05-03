@@ -123,6 +123,13 @@ export class Login extends React.Component {
     }
   }
 
+  handleReset = () => {
+    this.setState({
+      username: '',
+      password: '',
+    })
+  }
+
   render(){
     const isDisabled = !this.state.username || !this.state.password;
 
@@ -131,7 +138,8 @@ export class Login extends React.Component {
     <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange}></input>
     <label>Password:</label>
     <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}></input>
-    <button disabled={isDisabled}>Login</button>
+    <button disabled={isDisabled} onClick={this.handleLoginClick}>Login</button>
+    <button onClick={this.handleReset}>Reset</button>
     </div>
   }
 }
