@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 
 
-function Age(props) {
-    if (props.age > 18) {
-            return <p>Your age is {props.age}</p>
-    } else {
-           return <p>You are very young!</p>
-    };
-}
 
 export class Welcome extends React.Component {
 
@@ -17,12 +10,11 @@ export class Welcome extends React.Component {
                ? <p>Welcome {this.props.name}!</p>
                : <p>Welcome Everyone!</p>
             }
-            <Age age={this.props.age}/>
         </div>
     }
 }
 
-
+/*
 function DisplayCounter(props) {
     return <div>
         <h1>Counter: {props.count}</h1>
@@ -54,7 +46,7 @@ export class Counter extends React.Component {
        return <DisplayCounter count={this.state.count}/>
     }
 }
-
+*/
 
 export class ClickCounter extends React.Component {
     state = {count:0}
@@ -86,4 +78,26 @@ export function ClickTracker() {
     <button onClick={trackClick}>Button 2</button>
     <button onClick={trackClick}>Button 3</button>
   </div> 
+}
+
+
+export class InteractiveWelcome extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      nameInput: '',
+    }
+  }
+
+  handleInputChange = (event) => {
+    this.setState({nameInput: event.target.value});
+  }
+
+  render(){
+    return <div>
+      <label>Please type your name:</label>
+      <input value={this.state.nameInput} onChange={this.handleInputChange}></input>
+      <Welcome name={this.state.nameInput}/>
+    </div>
+  }
 }
