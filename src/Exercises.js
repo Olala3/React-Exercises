@@ -102,6 +102,7 @@ export class InteractiveWelcome extends React.Component {
   }
 }
 
+/*
 export class Login extends React.Component {
   state = {
     username: '',
@@ -140,6 +141,30 @@ export class Login extends React.Component {
     <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}></input>
     <button disabled={isDisabled} onClick={this.handleLoginClick}>Login</button>
     <button onClick={this.handleReset}>Reset</button>
+    </div>
+  }
+}
+*/
+
+export class UncontrolledLogin extends React.Component {
+  handleSubmit = (event) => {
+    event.preventDefault()
+
+    const username = event.target.elements.username.value
+    const password = event.target.elements.password.value
+
+    console.log({username, password})
+  }
+  render() {
+    return <div>
+      <form onSubmit={this.handleSubmit}>
+        <label>Username:</label>
+        <input name="username"/>
+        <label>Password:</label>
+        <input name='password' type='password'/>
+        <button type="submit">Login</button>
+        <button type='reset'>Reset</button>
+      </form>
     </div>
   }
 }
