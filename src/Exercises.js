@@ -155,11 +155,18 @@ export class UncontrolledLogin extends React.Component {
 
     console.log({username, password})
   }
+
+  usernameRef = React.createRef();
+
+  componentDidMount() {
+    this.usernameRef.current.focus();
+  }
+
   render() {
     return <div>
       <form onSubmit={this.handleSubmit}>
         <label>Username:</label>
-        <input name="username"/>
+        <input name="username" ref={this.usernameRef}/>
         <label>Password:</label>
         <input name='password' type='password'/>
         <button type="submit">Login</button>
