@@ -213,3 +213,5 @@ export class TodoList extends React.Component {
     </div>
   }
 }
+
+//input already clears when a Todo is added 
