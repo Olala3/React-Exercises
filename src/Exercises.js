@@ -175,3 +175,41 @@ export class UncontrolledLogin extends React.Component {
     </div>
   }
 }
+
+export class TodoList extends React.Component {
+  state = {
+    items: ['Workout', 'Cleaning', 'Watch some lessons'],
+    item: ''
+  }
+
+  handleAddTodo = () => {
+    this.setState({
+      items: [...this.state.items, this.state.item],
+      item: ''
+    })
+  }
+  
+  handleInputChange = (event) => {
+    this.setState({
+      item: event.target.value
+    })
+  }
+
+  render () {
+
+    return <div>
+      <h4>Todo List</h4>
+      <ul>
+        {this.state.items.map(
+          (item, index) =>
+          <li key={index+item}>
+            {item}
+          </li>
+        )}
+      </ul>
+
+      <input value={this.state.item} onChange={this.handleInputChange}/>
+      <button onClick={this.handleAddTodo}>Add Todo</button>
+    </div>
+  }
+}
