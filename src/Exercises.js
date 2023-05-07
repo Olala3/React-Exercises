@@ -210,18 +210,10 @@ export class TodoList extends React.Component {
   }
 
   render () {
-
+    console.log(this.props.items);
     return <div>
       <h4>Todo List</h4>
-      <ul>
-        {this.state.items.map(
-          (item, index) =>
-          <li key={index+item}>
-            {item}
-            <button onClick={() => this.handleRemoveTodo(index)}>Remove</button>
-          </li>
-        )}
-      </ul>
+      {this.props.render(this.state.items, this.handleRemoveTodo)}
 
       <input value={this.state.item} onChange={this.handleInputChange}/>
       <button onClick={this.handleAddTodo}>Add Todo</button>

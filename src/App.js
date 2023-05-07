@@ -16,7 +16,18 @@ function App() {
         <ClickTracker/>
         <InteractiveWelcome/>
         <UncontrolledLogin/>
-        <TodoList />
+        <TodoList
+          render={(items, handleRemoveTodo) => (
+            <ul>
+              {items.map((item, index) => (
+                <li key={index+item}>
+                  {item}
+                  <button onClick={() => handleRemoveTodo(index)}>Remove</button>
+                </li>
+              ))}
+            </ul>
+          )}
+        />
 
       </header>
     </div>
