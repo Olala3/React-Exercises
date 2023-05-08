@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {ClickCounter, ClickTracker, DisplayLanguage, InteractiveWelcome, Login, TodoList} from './Exercises'
+import {ClickCounter, ClickTracker, Counter, DisplayLanguage, InteractiveWelcome, Login, TodoList} from './Exercises'
 import { LanguageContext } from './CreateContext';
 import { useState } from 'react';
 
@@ -20,7 +20,7 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           
           {/* <Welcome name='Ola' age= '29'/> */}
-          {/* <Counter initialValue={29} increment={10} interval={1000}/> */}
+          <Counter />
           <ClickCounter/>
           <ClickTracker/>
           <InteractiveWelcome/>
