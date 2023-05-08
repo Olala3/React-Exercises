@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LanguageContext } from "./CreateContext";
 
 
@@ -49,8 +49,12 @@ export class Counter extends React.Component {
 }
 */
 
-export function ClickCounter({initialValue = 0}) {
+export function ClickCounter({initialValue = 0, onCounterChange}) {
     const [count, setCount] = useState(initialValue)
+
+    useEffect(() => {
+      onCounterChange && onCounterChange(count);
+    }, [count, onCounterChange])
   
     function handleClick() {
         setCount(count =>  count + 1 )
@@ -202,7 +206,7 @@ export class TodoList extends React.Component {
   }
 
   render () {
-    console.log(this.props.items);
+    // console.log(this.props.items);
     return <div>
       <h4>Todo List</h4>
       {this.props.render(this.state.items, this.handleRemoveTodo)}
