@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {ClickCounter, ClickTracker, DisplayLanguage, InteractiveWelcome, TodoList, UncontrolledLogin} from './Exercises'
+import {ClickCounter, ClickTracker, DisplayLanguage, InteractiveWelcome, Login, TodoList} from './Exercises'
 import { LanguageContext } from './CreateContext';
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ function App() {
           <ClickCounter/>
           <ClickTracker/>
           <InteractiveWelcome/>
-          <UncontrolledLogin/>
+          <Login/>
           <TodoList
             render={(items, handleRemoveTodo) => (
               <ul>

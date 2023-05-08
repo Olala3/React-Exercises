@@ -101,51 +101,44 @@ export class InteractiveWelcome extends React.Component {
   }
 }
 
-/*
-export class Login extends React.Component {
-  state = {
-    username: '',
-    password: ''
-  }
+export function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [remember, setRemember] = useState(false)
 
-  handleInputChange = (event) => {
+  const handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
+    const checked = event.target.checked;
 
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleLoginClick = () => {
-    if (this.state.username && this.state.password) {
-      this.props.onLogin(this.setState)
+    if (name === 'username'){
+      setUsername(value)
+    } if (name === 'password'){
+      setPassword(value)
+    } if (name === 'remember'){
+      setRemember(checked)
     }
   }
 
-  handleReset = () => {
-    this.setState({
-      username: '',
-      password: '',
-    })
+  const handleReset = () => {
+      setUsername('');
+      setPassword('');
   }
 
-  render(){
-    const isDisabled = !this.state.username || !this.state.password;
+  const isDisabled = !username || !password;
 
-    return <div>
+  return <div>
     <label>Username:</label>
-    <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange}></input>
+    <input name="username" type="text" value={username} onChange={handleInputChange}/>
     <label>Password:</label>
-    <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange}></input>
-    <button disabled={isDisabled} onClick={this.handleLoginClick}>Login</button>
-    <button onClick={this.handleReset}>Reset</button>
-    </div>
-  }
+    <input name="password" type="password" value={password} onChange={handleInputChange}/>
+    <input name='remember' type='checkbox' value={remember} onChange={handleInputChange}/>
+    <button disabled={isDisabled}>Login</button>
+    <button onClick={handleReset}>Reset</button>
+  </div>
 }
-*/
 
-export class UncontrolledLogin extends React.Component {
+/* export class UncontrolledLogin extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
@@ -173,7 +166,7 @@ export class UncontrolledLogin extends React.Component {
       </form>
     </div>
   }
-}
+} */
 
 export class TodoList extends React.Component {
   state = {
