@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { LanguageContext } from "./CreateContext";
 
 
 
@@ -223,3 +224,17 @@ export class TodoList extends React.Component {
 }
 
 //input already clears when a Todo is added 
+
+export function DisplayLanguage(props) {
+  const language = useContext(LanguageContext);
+  
+
+  return (
+    <div>
+      <select value={language} onChange={props.handleChangeLanguage}>
+        <option value="en">English</option>
+        <option value="tr">Turkish</option>
+      </select>
+    </div>
+  );
+}
