@@ -49,21 +49,19 @@ export class Counter extends React.Component {
 }
 */
 
-export class ClickCounter extends React.Component {
-    state = {count:0}
+export function ClickCounter({initialValue = 0}) {
+    const [count, setCount] = useState(initialValue)
   
-    handleClick = () => {
-        this.setState((state) => ({ count: state.count + 1 }));
+    function handleClick() {
+        setCount(count =>  count + 1 )
       };
   
-    render() {
       return (
         <div>
-          <p>Counter: {this.state.count}</p>
-          <button onClick={this.handleClick}>Click me!</button>
+          <p>Counter: {count}</p>
+          <button onClick={handleClick}>Click me!</button>
         </div>
       );
-    }
   }
 
 export function ClickTracker() {
