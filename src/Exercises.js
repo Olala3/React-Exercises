@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LanguageContext } from "./CreateContext";
-import { useCounter, useForm } from "./CustomHooks";
+import { useCounter, useForm, useGithubUser } from "./CustomHooks";
 
 
 
@@ -195,33 +195,17 @@ export function DisplayLanguage(props) {
 }
 
 export function GithubUser({ username }) {
-  const [data, setData] = useState(null)
+  const { data, error, loading, fetchUser } = useGithubUser(username)
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${username}`)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json()
-        } else {
-          throw new Error(`Failed to fetch user`)
-        }
-      })
-      .then(json => {
-        setData(json)
-        console.log(json)
-      })
-      .catch(error => {
-        setData(null)
-      })
-  }, [username])
-
-  if (data === null) {
-    return <div>Loading...</div>
-  }
+    fetchUser(username)
+  }, [fetchUser, username])
 
   return (
     <div>
-      <h3>Github Username is: {data && data.name}, id is: {data && data.id}</h3>
+      {loading && <h3>Loading...</h3>}
+      {data && <h3>Github Username is: {data.name}, id is: {data.id}</h3>}
+      {error && <h3>{error.message}</h3>}
     </div>
   )
 }
