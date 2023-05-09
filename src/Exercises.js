@@ -243,17 +243,40 @@ export function GithubUser({ username }) {
       })
   }, [username])
 
-  // if (data === null) {
-  //   return <div>Loading...</div>
-  // }
+  if (data === null) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div>
-      <h1>Github User</h1>
-      <ul>
-        <li>Username: {data.name}</li>
-        <li>Id: {data.id}</li>
-      </ul>
+      <h3>Github Username is: {data && data.name}, id is: {data && data.id}</h3>
+    </div>
+  )
+}
+
+export function GithubUserList() {
+  const [usernames, setUsernames] = useState([])
+  const [input, setInput] = useState('')
+
+  const handleInput= (event) => {
+    setInput(event.target.value)
+  }
+
+  const handleAddUser = () => {
+    setUsernames([...usernames, input]);
+    setInput('')
+  }
+
+  return(
+    <div>
+      <h2>Github user list</h2>
+      <div>
+        {usernames.map((username) => (
+          <GithubUser username={username} key={username} />
+        ))}
+      </div>
+      <input value={input} onChange={handleInput}/>
+      <button onClick={handleAddUser}>Add User to the list</button>
     </div>
   )
 }

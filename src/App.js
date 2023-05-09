@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {ClickCounter, ClickTracker, Counter, DisplayLanguage, GithubUser, InteractiveWelcome, Login, TodoList} from './Exercises'
+import {ClickCounter, ClickTracker, Counter, DisplayLanguage, GithubUserList, InteractiveWelcome, Login, TodoList} from './Exercises'
 import { LanguageContext } from './CreateContext';
 import { useState } from 'react';
 
@@ -39,7 +39,7 @@ function App() {
               </ul>
             )}
           />
-          <GithubUser username='Olala3'/>
+          <GithubUserList/>
 
         </header>
       </div>
