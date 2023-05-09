@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LanguageContext } from "./CreateContext";
-import { useCounter } from "./CustomHooks";
+import { useCounter, useForm } from "./CustomHooks";
 
 
 
@@ -84,39 +84,16 @@ export class InteractiveWelcome extends React.Component {
 }
 
 export function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [remember, setRemember] = useState(false)
-
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
-    const checked = event.target.checked;
-
-    if (name === 'username'){
-      setUsername(value)
-    } if (name === 'password'){
-      setPassword(value)
-    } if (name === 'remember'){
-      setRemember(checked)
-    }
-  }
-
-  const handleReset = () => {
-      setUsername('');
-      setPassword('');
-  }
-
-  const isDisabled = !username || !password;
+  const {username, password, remember, isDisabled, currentValue, reset} = useForm()
 
   return <div>
     <label>Username:</label>
-    <input name="username" type="text" value={username} onChange={handleInputChange}/>
+    <input name="username" type="text" value={username} onChange={currentValue}/>
     <label>Password:</label>
-    <input name="password" type="password" value={password} onChange={handleInputChange}/>
-    <input name='remember' type='checkbox' value={remember} onChange={handleInputChange}/>
+    <input name="password" type="password" value={password} onChange={currentValue}/>
+    <input name='remember' type='checkbox' value={remember} onChange={currentValue}/>
     <button disabled={isDisabled}>Login</button>
-    <button onClick={handleReset}>Reset</button>
+    <button onClick={reset}>Reset</button>
   </div>
 }
 
