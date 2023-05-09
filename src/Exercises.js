@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LanguageContext } from "./CreateContext";
+import { useCounter } from "./CustomHooks";
 
 
 
@@ -32,21 +33,15 @@ export function Counter() {
   </div>
 }
 
-export function ClickCounter({initialValue = 0, onCounterChange}) {
-    const [count, setCount] = useState(initialValue)
-
-    useEffect(() => {
-      onCounterChange && onCounterChange(count);
-    }, [count, onCounterChange])
-  
-    function handleClick() {
-        setCount(count =>  count + 1 )
-      };
+export function ClickCounter() {
+    const { count, increment, decrement, reset} = useCounter()
   
       return (
         <div>
           <p>Counter: {count}</p>
-          <button onClick={handleClick}>Click me!</button>
+          <button onClick={increment}>Increment</button>
+          <button onClick={decrement}>Decrement</button>
+          <button onClick={reset}>Reset</button>
         </div>
       );
   }
