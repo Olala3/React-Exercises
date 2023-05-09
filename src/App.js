@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {ClickCounter, ClickTracker, Counter, DisplayLanguage, InteractiveWelcome, Login, TodoList} from './Exercises'
+import {ClickCounter, ClickTracker, Counter, DisplayLanguage, GithubUser, InteractiveWelcome, Login, TodoList} from './Exercises'
 import { LanguageContext } from './CreateContext';
 import { useState } from 'react';
 
@@ -10,6 +10,8 @@ function App() {
   const handleChangeLanguage = (event) => {
     setLanguage(event.target.value);
   };
+
+  document.title= 'Exercises';
 
   return (
     <LanguageContext.Provider value={language}>
@@ -37,6 +39,7 @@ function App() {
               </ul>
             )}
           />
+          <GithubUser username='Olala3'/>
 
         </header>
       </div>

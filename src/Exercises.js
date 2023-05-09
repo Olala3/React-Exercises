@@ -221,3 +221,39 @@ export function DisplayLanguage(props) {
     </div>
   );
 }
+
+export function GithubUser({ username }) {
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    fetch(`https://api.github.com/users/${username}`)
+      .then(response => {
+        if (response.status === 200) {
+          return response.json()
+        } else {
+          throw new Error(`Failed to fetch user`)
+        }
+      })
+      .then(json => {
+        setData(json)
+        console.log(json)
+      })
+      .catch(error => {
+        setData(null)
+      })
+  }, [username])
+
+  // if (data === null) {
+  //   return <div>Loading...</div>
+  // }
+
+  return (
+    <div>
+      <h1>Github User</h1>
+      <ul>
+        <li>Username: {data.name}</li>
+        <li>Id: {data.id}</li>
+      </ul>
+    </div>
+  )
+}
