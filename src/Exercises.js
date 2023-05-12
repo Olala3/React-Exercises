@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LanguageContext } from "./CreateContext";
 import { useCounter, useForm, useGithubUser } from "./CustomHooks";
 
@@ -234,5 +234,29 @@ export function GithubUserList() {
       <input value={input} onChange={handleInput}/>
       <button onClick={handleAddUser}>Add User to the list</button>
     </div>
+  )
+}
+
+export function CarDetails({initialData}) {
+  const inputRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData(inputRef.current);
+    const carData = Object.fromEntries(formData.entries())
+    console.log(carData)
+    inputRef.current.reset();
+  }
+
+  return(
+    <form ref={inputRef} onSubmit={handleSubmit}>
+      <label htmlFor="model">Model:</label>
+      <input name="model" value={initialData}/>
+      <label htmlFor="year">Year:</label>
+      <input name="year" value={initialData}/>
+      <label htmlFor="color">Color:</label>
+      <input name="color" value={initialData}/>
+      <button>Submit</button>
+    </form>
   )
 }
