@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { LanguageContext } from "./CreateContext";
 import { useCounter, useForm, useGithubUser } from "./CustomHooks";
 
@@ -176,20 +176,14 @@ export class TodoList extends React.Component {
 //input already clears when a Todo is added 
 
 export function DisplayLanguage(props) {
-
+  const language = useContext(LanguageContext)
   return (
     <div>
-      <LanguageContext.Consumer>
-        {language => (
-          <div>
-            <select value={language} onChange={props.handleChangeLanguage}>
-              <option value="En">English</option>
-              <option value="Tr">Turkish</option>
-            </select>
-            <h1>Selected Language: {language}</h1>
-          </div>
-        )}
-      </LanguageContext.Consumer>
+      <select value={language} onChange={props.handleChangeLanguage}>
+        <option value="En">English</option>
+        <option value="Tr">Turkish</option>
+      </select>
+      <h1>Selected Language: {language}</h1>
     </div>
   );
 }
