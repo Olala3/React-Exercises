@@ -13,7 +13,7 @@ export function useCounter(initialValue=0){
 
     const reset = useCallback(function handleReset() {
       setCount(initialValue)
-    }, [])
+    }, [initialValue])
 
     return {
         count: count,

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {CarDetails, ClickCounter, ClickTracker, Counter, DisplayLanguage, GithubUserList, InteractiveWelcome, Login, TodoList} from './Exercises'
+import {CarDetails, ClickCounter, ClickTracker, Counter, DisplayLanguage, FilteredList, GithubUserList, InteractiveWelcome, Login, TodoList} from './Exercises'
 import { LanguageContext } from './CreateContext';
 import { useState } from 'react';
 
@@ -41,6 +41,7 @@ function App() {
           />
           <GithubUserList/>
           <CarDetails />
+          <FilteredList />
 
         </header>
       </div>

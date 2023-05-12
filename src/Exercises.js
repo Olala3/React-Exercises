@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { LanguageContext } from "./CreateContext";
 import { useCounter, useForm, useGithubUser } from "./CustomHooks";
 
@@ -252,5 +252,51 @@ export function CarDetails({initialData}) {
       <input name="color" value={initialData}/>
       <button>Submit</button>
     </form>
+  )
+}
+
+export function FilteredList() {
+  const [list, setList] = useState([
+    { id: 1, name: 'Jimmy', age: '20' },
+    { id: 2, name: 'David', age: '45' },
+    { id: 3, name: 'Lora', age: '17' },
+  ]);
+
+  const [item, setItem] = useState({ id: '', name: '', age: '' })
+
+  const handleAddItem = () => {
+    setList([...list, item])
+    setItem({id:'', name:'', age:''})
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setItem(prevItem => ({
+      ...prevItem,
+      [name]: value
+    }));
+  }
+
+  const filteredList = useMemo(() => {
+    return list.filter(item => item.age > 18);
+  }, [list]);
+
+  return(
+    <div>
+      <h3>List</h3>
+      <ul>
+        {list.map(item => (
+          <li key={item.id}>{item.id}, {item.name}, {item.age}</li>
+        ))}
+      </ul>
+      <h3>Filtered List</h3>
+      {filteredList.map(item =>(
+            <li key={item.id}>{item.id}, {item.name}, {item.age}</li>
+      ))}
+      <input name="id" value={item.id} onChange={handleInputChange}/>
+      <input name="name" value={item.name} onChange={handleInputChange}/>
+      <input name="age" value={item.age} onChange={handleInputChange}/>
+      <button onClick={handleAddItem}>Add item to the list</button>
+    </div>
   )
 }
