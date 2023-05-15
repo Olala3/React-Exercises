@@ -1,51 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
-import {CarDetails, ClickCounter, ClickTracker, Counter, DisplayLanguage, FilteredList, GithubUserList, InteractiveWelcome, Login, TodoList} from './Exercises'
-import { LanguageContext } from './CreateContext';
-import { useState } from 'react';
+import {Counter, } from './Exercises'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [language, setLanguage] = useState('en');
-
-  const handleChangeLanguage = (event) => {
-    setLanguage(event.target.value);
-  };
-
   document.title= 'Exercises';
 
   return (
-    <LanguageContext.Provider value={language}>
+    <Router>
       <div className="App">
         <header className="App-header">
-        <DisplayLanguage handleChangeLanguage={handleChangeLanguage}/>
-          
           <img src={logo} className="App-logo" alt="logo" />
-          
-          {/* <Welcome name='Ola' age= '29'/> */}
-          <Counter />
-          <ClickCounter/>
-          <ClickTracker/>
-          <InteractiveWelcome/>
-          <Login/>
-          <TodoList
-            render={(items, handleRemoveTodo) => (
-              <ul>
-                {items.map((item, index) => (
-                  <li key={index+item}>
-                    {item}
-                    <button onClick={() => handleRemoveTodo(index)}>Remove</button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          />
-          <GithubUserList/>
-          <CarDetails />
-          <FilteredList />
-
+          <Routes>
+            <Route path='/counter' element={<Counter/>} />
+          </Routes>
         </header>
       </div>
-    </LanguageContext.Provider>
+    </Router>
   );
 }
 
