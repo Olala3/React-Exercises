@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {Counter, ShowGithubUser, } from './Exercises'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   document.title= 'Exercises';
@@ -11,9 +11,14 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+          <div>
+            <Link to='/'>Home</Link> |
+            <Link to='counter'>Counter</Link> |
+            <Link to='users'>Users</Link>
+          </div>
           <Routes>
-            <Route path='/counter' element={<Counter/>} />
-            <Route path='/users/:username' element={<ShowGithubUser/>} />
+            <Route path='counter' element={<Counter/>} />
+            <Route path='users/:username' element={<ShowGithubUser/>} />
           </Routes>
         </header>
       </div>
