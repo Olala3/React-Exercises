@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState } from "react";
 import { useCounter, useForm, useGithubUser } from "./CustomHooks";
+import { useParams } from "react-router-dom";
 
 
 
@@ -213,6 +214,14 @@ export function GithubUser({ username }) {
       {error && <h3>{error.message}</h3>}
     </div>
   )
+}
+
+export function ShowGithubUser(){
+  const {username} = useParams()
+  return <div>
+    <h2>Show Github User</h2>
+    <GithubUser username={username}/>
+  </div>
 }
 
 export function GithubUserList() {
