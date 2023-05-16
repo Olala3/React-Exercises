@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Counter, ShowGithubUser, } from './Exercises'
+import {Counter, ShowGithubUser, Welcome, } from './Exercises'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -17,8 +17,10 @@ function App() {
             <Link to='users'>Users</Link>
           </div>
           <Routes>
+            <Route path='/' element={<Welcome/>} />
             <Route path='counter' element={<Counter/>} />
             <Route path='users/:username' element={<ShowGithubUser/>} />
+            <Route path='*' element={<h3>Not found</h3>}/>
           </Routes>
         </header>
       </div>
