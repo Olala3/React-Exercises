@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState } from "react";
 import { useCounter, useForm, useGithubUser } from "./CustomHooks";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 
@@ -225,9 +225,9 @@ export function GithubUser(props) {
         <div>  
           <h2>{userData.name}</h2>
           <p>{userData.bio}</p>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+          {/* <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             {userData.html_url}
-          </a>
+          </a> */}
         </div>
       }
 
@@ -262,7 +262,10 @@ export function GithubUserList() {
       <h2>Github user list</h2>
       <div>
         {usernames.map((username) => (
-          <GithubUser username={username} key={username} />
+          <div key={username}>
+            <Link to={`users/:username`}>{username}</Link>
+            <GithubUser username={username} key={username} />
+          </div>
         ))}
       </div>
       <input value={input} onChange={handleInput}/>
