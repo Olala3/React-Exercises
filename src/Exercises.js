@@ -200,20 +200,40 @@ export function DisplayLanguage() {
   );
 }
 
-export function GithubUser({ username }) {
-  const { data, error, loading, fetchUser } = useGithubUser(username)
+export function GithubUser(props) {
+  const { username } = props;
+  const { userData, loading, error } = useGithubUser(username);
 
-  useEffect(() => {
-    fetchUser(username)
-  }, [fetchUser, username])
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p> There is no user with that</p>
+  }
+
+  if (!userData) {
+    return null;
+  }
 
   return (
     <div>
-      {loading && <h3>Loading...</h3>}
-      {data && <h3>Github Username is: {data.name}, id is: {data.id}</h3>}
-      {error && <h3>{error.message}</h3>}
+
+      {error ?  
+        <p>{"There is no user with that code"}</p>
+      :
+        <div>  
+          <h2>{userData.name}</h2>
+          <p>{userData.bio}</p>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            {userData.html_url}
+          </a>
+        </div>
+      }
+
+      
     </div>
-  )
+  );
 }
 
 export function ShowGithubUser(){

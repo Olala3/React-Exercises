@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 export function useCounter(initialValue=0){
     const [count, setCount] = useState(initialValue)
@@ -62,32 +62,39 @@ export function useForm() {
 
 
 export function useGithubUser(username) {
-    const [data, setData] = useState(null)
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
-  
-    async function fetchUser() {
-      setLoading(true)
-      setError(null)
-  
-      try {
-        const response = await fetch(`https://api.github.com/users/${username}`)
-        if (response.status === 200) {
-          const json = await response.json()
-          setData(json)
-        } else {
-          throw new Error('Failed to fetch user')
-        }
-      } catch (error) {
-        setError(error)
-        setData(null)
-      } finally {
-        setLoading(false)
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  async function fetchUserData() {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://api.github.com/users/${username}`);
+
+      const data = await response.json();
+      setUserData(data);
+      setLoading(false);
+      console.log(response.status);
+
+      if (response.status == 404) {
+        console.log("Hello");
+        setError(true);
       }
+
+    } catch (error) {
+      setError(error);
+      console.log('Hello');
+      setLoading(false);
     }
-  
-    return { data, error, loading, fetchUser }
   }
+
+  useEffect(() => {
+    fetchUserData();
+  }, [username]);
+
+  return { userData, loading, error, fetchUserData };
+}
+
 
   
   
