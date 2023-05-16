@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
+import { mutate, useSWR} from "swr";
 
 export function useCounter(initialValue=0){
     const [count, setCount] = useState(initialValue)
@@ -60,39 +61,15 @@ export function useForm() {
     }
 }
 
+const fetcher = (url) => fetch(url).then((response) => response.json())
 
 export function useGithubUser(username) {
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const {data, error, mutate} = useSWR(`https://api.github.com/users/${username}`, fetcher)
 
-  async function fetchUserData() {
-    setLoading(true);
-    try {
-      const response = await fetch(`https://api.github.com/users/${username}`);
-
-      const data = await response.json();
-      setUserData(data);
-      setLoading(false);
-      console.log(response.status);
-
-      if (response.status == 404) {
-        console.log("Hello");
-        setError(true);
-      }
-
-    } catch (error) {
-      setError(error);
-      console.log('Hello');
-      setLoading(false);
-    }
+  function fetchUserData() {
+    mutate()
   }
-
-  useEffect(() => {
-    fetchUserData();
-  }, [username]);
-
-  return { userData, loading, error, fetchUserData };
+  return { data, loading:!data && !error , error, fetchUserData };
 }
 
 

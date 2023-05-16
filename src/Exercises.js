@@ -202,7 +202,7 @@ export function DisplayLanguage() {
 
 export function GithubUser(props) {
   const { username } = props;
-  const { userData, loading, error } = useGithubUser(username);
+  const { data, loading, error, fetchUserData } = useGithubUser(username);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -212,7 +212,7 @@ export function GithubUser(props) {
     return <p> There is no user with that</p>
   }
 
-  if (!userData) {
+  if (!data) {
     return null;
   }
 
@@ -223,8 +223,8 @@ export function GithubUser(props) {
         <p>{"There is no user with that code"}</p>
       :
         <div>  
-          <h2>{userData.name}</h2>
-          <p>{userData.bio}</p>
+          <h2>{data.name}</h2>
+          <p>{data.bio}</p>
           {/* <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             {userData.html_url}
           </a> */}
@@ -263,7 +263,7 @@ export function GithubUserList() {
       <div>
         {usernames.map((username) => (
           <div key={username}>
-            <Link to={`users/:username`}>{username}</Link>
+            <Link to={`/:{username}`}>{username}</Link>
             <GithubUser username={username} key={username} />
           </div>
         ))}
