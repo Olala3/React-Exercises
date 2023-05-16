@@ -17,7 +17,7 @@ function App() {
             <Link to='users'>Users</Link>
           </div>
           <Routes>
-            <Route path='/' element={<Welcome/>} />
+            <Route path='/' element={<h3>Add a user and select it</h3>} />
             <Route path='counter' element={<Counter/>} />
             <Route path='users' element={<GithubUserList/>} />
             <Route path='users/:username' element={<ShowGithubUser/>} />
