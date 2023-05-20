@@ -1,5 +1,5 @@
-import { useCallback, useState, useEffect } from "react";
-import { mutate, useSWR} from "swr";
+import { useCallback, useState } from "react";
+import useSWR from "swr";
 
 export function useCounter(initialValue=0){
     const [count, setCount] = useState(initialValue)
@@ -64,7 +64,7 @@ export function useForm() {
 const fetcher = (url) => fetch(url).then((response) => response.json())
 
 export function useGithubUser(username) {
-  const {data, error, mutate} = useSWR(`https://api.github.com/users/${username}`, fetcher)
+  const {data, error, mutate} = useSWR(username ? `https://api.github.com/users/${username}`: null,  fetcher)
 
   function fetchUserData() {
     mutate()
