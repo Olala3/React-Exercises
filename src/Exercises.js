@@ -216,6 +216,8 @@ export function GithubUser(props) {
     return null;
   }
 
+  fetchUserData();
+  
   return (
     <div>
 
